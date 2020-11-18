@@ -2,6 +2,7 @@
 
 namespace App\domain\HR\entity;
 
+
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model

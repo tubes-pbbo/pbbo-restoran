@@ -13,7 +13,11 @@ use App\Menu;
 |
 */
 
-Route::get('/','HRController@getEmployee');
+// Route pertama kali ke home
+Route::get('/','HomeController@home');
+
+// Route HR
+Route::get('/HR','HRController@getEmployee');
 Route::get('/editEmployee/{id}','HRController@getEmployeeById');
 Route::put('/editEmployee/{id}/edit','HRController@updateEmployee');
 Route::get('/createEmployee/create', 'HRController@getEmployeeType');
@@ -22,7 +26,7 @@ Route::delete('/deleteEmployee/{id}', 'HRController@deleteEmployee');
 
 
 
-
+// Route Cust
 Route::get('/da', function () {
     $api = 'e5f12dc920b24dfd9f3dee909c56ece0';
     $url1 = 'https://api.spoonacular.com/recipes/complexSearch?number=4&apiKey='.$api;
@@ -38,6 +42,23 @@ Route::get('/da', function () {
         'array2' => $array2['results'],
         'menus' => $menus,
     ]);
+
+});
+
+ // Route Kasir
+Route::get('/Cashier', 'CashierController@view');
+
+Route::post('/CashierLogin', 'CashierController@login')->name('login');
+Route::group(['middleware'=>'cashier'],function(){
+    Route::get('/CashierHome','CashierController@cashierHome');
 });
 
 
+// Route Chef
+Route::get('/Chef','ChefController@view');
+
+// Route Waiters
+Route::get('/Waiters','WaitersController@view');
+
+//Route Kasir Payment
+Route::get('/Cashier/Payment/{tableName}','CashierController@payment');

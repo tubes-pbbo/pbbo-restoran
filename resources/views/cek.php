@@ -1,4 +1,4 @@
-@extends('Cashier/app')
+@extends('HR/app')
 
 @section('content')
 
@@ -12,7 +12,7 @@
         <br>
         <div class="table-responsive">
             <table class="table">
-                <tr>
+                <tr></tr>
                     <td> <a href="detail_bayar.php" type='button' class="btn btn-primary btn-lg btn-block">1</a></td>
                     <td> <a href="detail_bayar.php" type='button' class="btn btn-primary btn-lg btn-block">2</a></td>
                     <td> <a href="detail_bayar.php" type='button' class="btn btn-primary btn-lg btn-block">7</a> </td>

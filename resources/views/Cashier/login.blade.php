@@ -11,10 +11,12 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" method="POST" action="{{ route('login') }}">
+                            {{ csrf_field() }}
+
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="cashierID" class="text-info">CashierId</label><br>
-                                <input type="text" name="cashierID" id="cashiedID" class="form-control">
+                                <input type="text" name="id" id="cashiedID" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>

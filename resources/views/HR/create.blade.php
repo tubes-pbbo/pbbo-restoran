@@ -50,7 +50,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Password</span>
                 </div>
-                <input type="password" aria-label="pass" class="form-control" name="password">
+                <input type="password" name="password" aria-label="password" class="form-control">
             </div>
         </div>
         <div class="row">

@@ -61,10 +61,10 @@ class HRController extends Controller
             'name'=> 'required|max:255',
             'birthdate' => 'required|max:10',
             'employeetype' => 'required|max:1',
-            
+
         ]);
 
-        if ($validator->fails() || $req->employeetype == 3 && $req->password="" ){
+        if ($validator->fails() || $req->employeetype == 3 && $req->password=="" ){
             return redirect('/createEmployee/create')
             ->withInput()
             ->withErrors($validator);

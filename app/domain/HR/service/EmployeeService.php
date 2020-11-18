@@ -38,7 +38,9 @@ class EmployeeService {
         return $this->dao->findEmployeeType();
     }
 
-
+    public function cashierLogin(Request $req) {
+        return $this->dao->login($req);
+    }
 
 
 }
