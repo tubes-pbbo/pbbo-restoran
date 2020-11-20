@@ -27,10 +27,6 @@
           </li>
           <li class="nav-item">
             <?php
-            $con = mysqli_connect("localhost", "root", "", "db_restoran");
-            if (mysqli_connect_errno()) {
-              echo "Failed to connect to database : " . mysqli_connect_error();
-            }
             session_start();
             if (isset($_SESSION['login'])) {
               ?>
@@ -52,16 +48,6 @@
       </div>
     </nav>
   </header>
-
-  <?php
-  $con = mysqli_connect("localhost", "root", "", "db_restoran");
-  if (mysqli_connect_errno()) {
-    echo "Failed to connect to database : " . mysqli_connect_error();
-  }
-  ?>
-
-
-
 
 
   <div class="book-wrapper">
@@ -185,7 +171,6 @@
 
   </div>
 
-  <?php mysqli_close($con);?>
 
 
 </div>

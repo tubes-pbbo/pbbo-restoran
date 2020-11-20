@@ -1,21 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand">Restaurant OKE</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Restoran Oke</title>
+    <link href="/css/app.css" rel="stylesheet">
+    <script src="/js/app.js" charset="utf=8"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <a class="navbar-brand">Restoran OKE</a>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" href="#" id="navbarDropdownMenuLink" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     List Menu
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="Menu.php?id=Menu">Semua Menu</a>
+                  <a class="dropdown-item" href="{{ url('/Customer/Menu') }}">Semua Menu</a>
                   <a class="dropdown-item" href="Menu.php?id=Lunch">Lunch</a>
                   <a class="dropdown-item" href="Menu.php?id=Dinner">Dinner</a>
                   <a class="dropdown-item" href="Menu.php?id=Dishes">Dishes</a>
@@ -37,5 +44,12 @@
             Meja A1
             </a>
         </span>
+      </div>
+    </nav>
+
+    <div class="container" style="padding-top: 80px">
+        @yield('content')
     </div>
-</nav>
+
+</body>
+</html>

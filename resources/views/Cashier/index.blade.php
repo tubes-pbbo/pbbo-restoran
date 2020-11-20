@@ -27,10 +27,7 @@
           </li>
           <li class="nav-item">
             <?php
-            $con = mysqli_connect("localhost", "root", "", "db_restoran");
-            if (mysqli_connect_errno()) {
-              echo "Failed to connect to database : " . mysqli_connect_error();
-            }
+
             session_start();
             if (isset($_SESSION['login'])) {
               ?>
@@ -39,11 +36,11 @@
               </li>
               <?php
               echo "<li class='nav-item'>";
-              echo "<a class='nav-link' href='logout.php'>Log out</a>";
+              echo "<a class='nav-link' href='logout.blade.php'>Log out</a>";
               echo "</li>";
             } else {
               echo "<li class='nav-item'>";
-              echo "<a class='nav-link' href='login.php'>Log in</a>";
+              echo "<a class='nav-link' href='login.blade.php'>Log in</a>";
               echo "</li>";
             }
             ?>
@@ -68,31 +65,27 @@
       <div class="table-responsive">
         <table class="table">
           <tr>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">1</a></td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">2</a></td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">7</a> </td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">8</a></td>
+            <td> <a href="{{ url('/Kasir/Payment/1') }}" type = 'button' class="btn btn-primary btn-lg btn-block">1</a></td>
+            <td> <a href="{{ url('/Kasir/Payment/2') }}" type = 'button' class="btn btn-primary btn-lg btn-block">2</a></td>
+            <td> <a href="{{ url('/Kasir/Payment/7') }}" type = 'button' class="btn btn-primary btn-lg btn-block">7</a> </td>
+            <td> <a href="{{ url('/Kasir/Payment/8') }}"type = 'button' class="btn btn-primary btn-lg btn-block">8</a></td>
           </tr>
           <tr>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">3</a> </td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">4</a></td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">9</a></td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">10</a></td>
+            <td> <a href="{{ url('/Kasir/Payment/3') }}" type = 'button' class="btn btn-primary btn-lg btn-block">3</a> </td>
+            <td> <a href="{{ url('/Kasir/Payment/4') }}"type = 'button' class="btn btn-primary btn-lg btn-block">4</a></td>
+            <td> <a href="{{ url('/Kasir/Payment/9') }}" type = 'button' class="btn btn-primary btn-lg btn-block">9</a></td>
+            <td> <a href="{{ url('/Kasir/Payment/10') }}" type = 'button' class="btn btn-primary btn-lg btn-block">10</a></td>
           </tr>
           <tr>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">5</a> </td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">6</a> </td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">11</a></td>
-            <td> <a href="detail_bayar.php" type = 'button' class="btn btn-primary btn-lg btn-block">12</a> </td>
+            <td> <a href="{{ url('/Kasir/Payment/5') }}" type = 'button' class="btn btn-primary btn-lg btn-block">5</a> </td>
+            <td> <a href="{{ url('/Kasir/Payment/6') }}" type = 'button' class="btn btn-primary btn-lg btn-block">6</a> </td>
+            <td> <a href="{{ url('/Kasir/Payment/11') }}" type = 'button' class="btn btn-primary btn-lg btn-block">11</a></td>
+            <td> <a href="{{ url('/Kasir/Payment/12') }}" type = 'button' class="btn btn-primary btn-lg btn-block">12</a> </td>
           </tr>
 
         </table>
       </div>
-      <?php mysqli_close($con);?>
-
-
     </div>
-
   </div>
 </body>
 </html>

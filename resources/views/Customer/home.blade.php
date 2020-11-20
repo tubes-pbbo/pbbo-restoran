@@ -1,4 +1,4 @@
-@include('navigation')
+@extends('Customer/navigation')
 @extends('footer')
 <!DOCTYPE html>
 <html lang="en">
@@ -8,17 +8,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Home</title>
 </head>
-  <style>
-      footer {
-        background-color: #383943;
-        color: #ffffff;
-        text-align: center;
-      }
-      .footer1 {
-        padding-top: 25px;
-        padding-bottom: 25px;
-      }
-  </style>
+
 <body>
   <img src="https://www.singleplatform.com/wp-content/uploads/2018/12/5-Tips-for-Improving-Restaurant-Ambiance.jpg" width="100%" height="200px">
   <center style="margin-top: 30px">Makanan Favorit</center>
