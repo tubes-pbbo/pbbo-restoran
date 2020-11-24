@@ -21,12 +21,16 @@ class SalesDao
         return Table::all();
     }
 
-    public function findTableOrderById($id){
+    public function findTableById($id){
         return Table::find($id);
     }
 
     public function findAllOrder(){
         return Order::all();
+    }
+
+    public function findOrderById($id){
+        return Order::find($id);
     }
 
     public function updateMenuOrder(MenuOrder $menu){
@@ -48,8 +52,16 @@ class SalesDao
         }
 
         return $payment->save();
-
     }
+
+    public function saveTable(Table $table){
+        return $table->save();
+    }
+
+    public function saveOrder(Order $order){
+        return $order->save();
+    }
+
 
 
 }

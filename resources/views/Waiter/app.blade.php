@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HR Restoran Oke</title>
+    <title>Waiter Restoran Oke</title>
     <link href="/css/app.css" rel="stylesheet">
     <script src="/js/app.js" charset="utf=8"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>

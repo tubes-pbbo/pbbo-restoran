@@ -56,6 +56,7 @@ Route::group(['middleware'=>'cashier'],function(){
     Route::get('/CashierHome','CashierController@cashierHome');
     Route::get('/Cashier/{id}','CashierController@cashierTable')->name('cashierTable');
     Route::get('/CashierPayment/{tableId}/{cashierId}/{PaymentId}','CashierController@cashierPayment');
+    Route::get('/Cashier/Payment/{tableName}','CashierController@payment');
 });
 
 
@@ -67,10 +68,11 @@ Route::get('/ChefRecipe/{id}','ChefController@showRecipe');
 
 // Route Waiters
 Route::get('/Waiters','WaitersController@view');
+Route::get('/WaitersTable/{id}','WaitersController@changeTable');
+Route::get('/WaitersOrder/{orderId}/{menuId}','WaitersController@changeOrder');
 
-//Route Kasir Payment
-Route::get('/Cashier/Payment/{tableName}','CashierController@payment');
 
+//punya si frans
 Route::get('/{meja}', function ($meja) {
 
     $mytime = \Carbon\Carbon::now();

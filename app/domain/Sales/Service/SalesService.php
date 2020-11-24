@@ -3,8 +3,10 @@
 namespace App\domain\Sales\service;
 
 use App\domain\Sales\dao\SalesDao;
+use App\Domain\Sales\Entity\Menu;
 use App\Domain\Sales\Entity\MenuOrder;
 use App\Domain\Sales\Entity\Payment;
+use App\Domain\Sales\Entity\Table;
 
 class SalesService{
 
@@ -19,7 +21,7 @@ class SalesService{
     }
 
     public function getTableById($id) {
-        return $this->dao->findTableOrderById($id);
+        return $this->dao->findTableById($id);
     }
 
     public function getOrder(){
@@ -49,6 +51,37 @@ class SalesService{
         $payment->kasir = $cId;
 
         return $this->dao->savePaymentAndMenu($payment);
+    }
+
+    public function saveIfTable($id){
+        $table = $this->dao->findTableById($id);
+        if ($table->statusMeja == 0){
+            $table->statusMeja = 1;
+        }else{
+            $table->statusMeja = 0;
+        }
+
+        return $this->dao->saveTable($table);
+    }
+
+    public function saveMenuById($id){
+        $menu = MenuOrder::find($id);
+        $menu->stat = 3;
+
+        return $this->dao->updateMenuOrder($menu);
+    }
+
+    public function checkIfOrderId($id){
+        $order = $this->dao->findOrderById($id);;
+        foreach($order->menuorder as $menu){
+            if($menu->stat == 2 or $menu->stat == 1){
+                return false;
+            }
+        }
+
+        $order->stat = 1;
+
+        return $this->dao->saveOrder($order);
     }
 
 }
