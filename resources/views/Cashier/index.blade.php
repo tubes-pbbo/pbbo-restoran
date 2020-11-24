@@ -10,7 +10,10 @@
             </center>
         </div>
         <br>
-        <div class="table-responsive">
+        @foreach ($tables as $table)
+            <a class="btn btn-secondary btn-lg btn-block" href="/Cashier/{{ $table->tableId }}" method="GET">{{ $table->tableName}}</a>
+        @endforeach
+        {{-- <div class="table-responsive">
             <table class="table">
                 <tr>
                     <td> <a href="detail_bayar.php" type='button' class="btn btn-primary btn-lg btn-block">1</a></td>
@@ -32,6 +35,6 @@
                 </tr>
 
             </table>
-        </div>
+        </div> --}}
 
-        @endsection
+@endsection

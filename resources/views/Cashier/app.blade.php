@@ -12,13 +12,13 @@
             @if (Auth::check())
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="/CashierHome">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="history.php">History Pembayaran</a>
                     </li>
-                    <li class="nav-item">
-                    <a class="nav-link"> Cashier, {{ Auth::user()->name }}</a>
+                    <li class="nav-item ">
+                    <a class="nav-link disabled"> Cashier, {{ Auth::user()->name }}</a>
                     </li>
                 </ul>
             @endif

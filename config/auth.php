@@ -80,7 +80,7 @@ return [
 
         'cashiers' => [
             'driver' => 'eloquent',
-            'model' => App\domain\HR\entity\Employee::class,
+            'model' => App\Domain\HR\Entity\Employee::class,
         ],
     ],
 

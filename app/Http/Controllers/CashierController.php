@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\domain\HR\service\EmployeeService;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Domain\Sales\Entity\Menuorder;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-
+use App\domain\Sales\Service\SalesService;
 
 class CashierController extends Controller{
-
-    use AuthenticatesUsers;
 
     public function view(){
         return view('Cashier/login');
@@ -21,8 +19,35 @@ class CashierController extends Controller{
     }
 
     public function cashierHome(){
-        return view('Cashier/index');
+        $svc = new SalesService();
+        $tables = $svc->getAllTable();
+
+        return view('Cashier/index',[
+            'tables' => $tables,
+        ]);
     }
+
+    public function cashierTable($id){
+        $svc = new SalesService();
+        $table = $svc->getTableById($id);
+        $payments = $svc->getAllPayment();
+        $orderTable = null;
+
+        foreach ($payments as $p){
+            $orderTable = $p->order->where('tableId','=',$id)->get();
+        }
+
+        if ($table->statusMeja == 1){
+
+            return view('cashier/detail_bayar',[
+                'table' => $table,
+                'orders' => $orderTable,
+            ]);
+        }
+
+
+    }
+
 
     public function login(Request $req){
         $validator = Validator::make($req->all(), [
@@ -40,6 +65,15 @@ class CashierController extends Controller{
         }
 
     }
+
+    public function cashierPayment($tableId,$cashierId , $paymentId){
+        $svc = new SalesService();
+        $temp = $svc->updateMenuCashierStatus($cashierId, $paymentId);
+
+        return redirect()->route('cashierTable',[$tableId]);
+    }
+
+
 }
 
 ?>

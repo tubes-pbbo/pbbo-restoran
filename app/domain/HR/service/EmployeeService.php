@@ -42,7 +42,6 @@ class EmployeeService {
         return $this->dao->login($req);
     }
 
-
 }
 
 ?>

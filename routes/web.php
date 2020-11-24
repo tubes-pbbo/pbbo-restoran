@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Menu;
+use App\Domain\Sales\Entity\Menu;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,15 +47,19 @@ Route::get('/da', function () {
 
  // Route Kasir
 Route::get('/Cashier', 'CashierController@view');
-
 Route::post('/CashierLogin', 'CashierController@login')->name('login');
 Route::group(['middleware'=>'cashier'],function(){
     Route::get('/CashierHome','CashierController@cashierHome');
+    Route::get('/Cashier/{id}','CashierController@cashierTable')->name('cashierTable');
+    Route::get('/CashierPayment/{tableId}/{cashierId}/{PaymentId}','CashierController@cashierPayment');
 });
 
 
 // Route Chef
 Route::get('/Chef','ChefController@view');
+Route::get('/Chef/{id}','ChefController@updateMenu');
+Route::get('/ChefRecipe/{id}','ChefController@showRecipe');
+
 
 // Route Waiters
 Route::get('/Waiters','WaitersController@view');

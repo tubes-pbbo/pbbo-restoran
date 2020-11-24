@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2020 at 07:44 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Generation Time: Nov 22, 2020 at 09:50 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -40,30 +41,8 @@ CREATE TABLE `bills` (
 --
 
 INSERT INTO `bills` (`billID`, `orderID`, `amount`, `created_at`, `updated_at`) VALUES
+('119112020192853', '19112020192853', 1829850, '2020-11-19 14:17:16', '2020-11-20 05:01:11'),
 ('B1', 'O1', 50000, '2020-11-11 08:05:38', '2020-11-11 08:05:38');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cartitems`
---
-
-CREATE TABLE `cartitems` (
-  `orderID` varchar(20) DEFAULT NULL,
-  `menuID` varchar(20) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL,
-  `note` varchar(225) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cartitems`
---
-
-INSERT INTO `cartitems` (`orderID`, `menuID`, `qty`, `note`, `created_at`, `updated_at`) VALUES
-('O1', '547775', 2, 'ga pedes', '2020-11-11 08:04:52', '2020-11-11 08:04:52'),
-('O1', '592479', 1, 'setengah mateng', '2020-11-11 08:04:52', '2020-11-11 08:04:52');
 
 -- --------------------------------------------------------
 
@@ -86,6 +65,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employeeID`, `name`, `birthdate`, `employeeType`, `created_at`, `updated_at`, `password`) VALUES
+('C0', 'Ferani', '2000-08-07', 3, '2020-11-20 05:46:10', '2020-11-20 05:46:10', '$2y$10$s1i5/PFmd7b08jiS6SsfO.DONGqhAffshPUyKUlNFgPOdMiof4Yme'),
 ('C1', 'Anwar', '2020-11-06', 1, '2020-11-11 08:01:32', '2020-11-11 08:01:32', NULL),
 ('K1', 'Agus', '2020-11-01', 3, '2020-11-11 08:01:32', '2020-11-11 08:01:32', NULL),
 ('W1', 'Bina', '2020-11-08', 2, '2020-11-11 08:02:28', '2020-11-11 08:02:28', NULL);
@@ -157,6 +137,7 @@ INSERT INTO `mejas` (`tableId`, `tableName`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `menus` (
   `menuId` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
   `price` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -166,23 +147,63 @@ CREATE TABLE `menus` (
 -- Dumping data for table `menus`
 --
 
-INSERT INTO `menus` (`menuId`, `price`, `created_at`, `updated_at`) VALUES
-('495111', 15000, '2020-11-11 03:01:53', '2020-11-11 03:01:53'),
-('547775', 20000, '2020-11-11 08:00:09', '2020-11-11 08:00:09'),
-('582897', 35000, '2020-11-11 03:03:18', '2020-11-11 03:03:18'),
-('592479', 10000, '2020-11-11 08:00:17', '2020-11-11 08:00:17'),
-('644387', 30000, '2020-11-11 03:47:30', '2020-11-11 03:47:30'),
-('689502', 30000, '2020-11-11 03:03:18', '2020-11-11 03:03:18'),
-('715392', 46000, '2020-11-11 03:47:30', '2020-11-11 03:47:30'),
-('715497', 27000, '2020-11-11 03:47:30', '2020-11-11 03:47:30'),
-('715594', 13000, '2020-11-11 03:47:30', '2020-11-11 03:47:30'),
-('716268', 43000, '2020-11-11 03:47:30', '2020-11-11 03:47:30'),
-('716381', 26000, '2020-11-11 03:47:30', '2020-11-11 03:47:30'),
-('716426', 15000, '2020-11-11 03:47:30', '2020-11-11 03:47:30'),
-('777037', 42000, '2020-11-11 03:03:18', '2020-11-11 03:03:18'),
-('782601', 12000, '2020-11-11 03:47:30', '2020-11-11 03:47:30'),
-('801710', 22000, '2020-11-11 03:03:18', '2020-11-11 03:03:18'),
-('818941', 25000, '2020-11-11 03:01:53', '2020-11-11 03:01:53');
+INSERT INTO `menus` (`menuId`, `name`, `price`, `created_at`, `updated_at`) VALUES
+('495111', 'makanan1', 15000, '2020-11-10 20:01:53', '2020-11-10 20:01:53'),
+('547775', 'makanan2', 20000, '2020-11-11 01:00:09', '2020-11-11 01:00:09'),
+('582897', 'makanan3', 35000, '2020-11-10 20:03:18', '2020-11-10 20:03:18'),
+('592479', 'makanan4', 10000, '2020-11-11 01:00:17', '2020-11-11 01:00:17'),
+('636589', 'makanan5', 55000, NULL, NULL),
+('640941', 'makanan6', 23000, NULL, NULL),
+('642605', 'makanan7', 15000, NULL, NULL),
+('644387', 'makanan8', 30000, '2020-11-10 20:47:30', '2020-11-10 20:47:30'),
+('689502', 'makanan9', 30000, '2020-11-10 20:03:18', '2020-11-10 20:03:18'),
+('715392', 'makanan10', 46000, '2020-11-10 20:47:30', '2020-11-10 20:47:30'),
+('715415', 'makanan11', 46000, NULL, NULL),
+('715446', 'makanan12', 12000, NULL, NULL),
+('715497', 'makanan13', 27000, '2020-11-10 20:47:30', '2020-11-10 20:47:30'),
+('715540', 'makanan14', 21000, NULL, NULL),
+('715594', 'makanan15', 13000, '2020-11-10 20:47:30', '2020-11-10 20:47:30'),
+('715769', 'makanan16', 23000, NULL, NULL),
+('716268', 'makanan17', 43000, '2020-11-10 20:47:30', '2020-11-10 20:47:30'),
+('716381', 'makanan18', 26000, '2020-11-10 20:47:30', '2020-11-10 20:47:30'),
+('716408', 'makanan19', 12500, NULL, NULL),
+('716426', 'makanan20', 15000, '2020-11-10 20:47:30', '2020-11-10 20:47:30'),
+('716627', 'makanan21', 24000, NULL, NULL),
+('729366', 'makanan22', 11000, NULL, NULL),
+('756814', 'makanan23', 22000, NULL, NULL),
+('766453', 'makanan24', 22000, NULL, NULL),
+('777037', 'makanan25', 42000, '2020-11-10 20:03:18', '2020-11-10 20:03:18'),
+('782600', 'makanan26', 17000, NULL, NULL),
+('782601', 'makanan27', 12000, '2020-11-10 20:47:30', '2020-11-10 20:47:30'),
+('794349', 'makanan28', 20000, '2020-11-16 14:09:27', '2020-11-16 14:09:27'),
+('795751', 'makanan29', 56000, NULL, NULL),
+('798400', 'makanan30', 22500, NULL, NULL),
+('801710', 'makanan31', 22000, '2020-11-10 20:03:18', '2020-11-10 20:03:18'),
+('818941', 'makanan32', 25000, '2020-11-10 20:01:53', '2020-11-10 20:01:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_order`
+--
+
+CREATE TABLE `menu_order` (
+  `ID` int(11) NOT NULL,
+  `order_orderID` varchar(20) DEFAULT NULL,
+  `menu_menuId` varchar(20) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `note` varchar(225) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `menu_order`
+--
+
+INSERT INTO `menu_order` (`ID`, `order_orderID`, `menu_menuId`, `qty`, `note`, `created_at`, `updated_at`) VALUES
+(17, '19112020192853', '716408', 1, NULL, '2020-11-20 04:42:56', '2020-11-20 04:42:56'),
+(18, '19112020192853', '756814', 13, NULL, '2020-11-20 04:43:27', '2020-11-20 04:43:47');
 
 -- --------------------------------------------------------
 
@@ -225,6 +246,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`orderID`, `tableID`, `orderDate`, `stat`, `created_at`, `updated_at`) VALUES
+('19112020192853', 1, '2020-11-19 19:28:55', 1, '2020-11-19 12:28:55', '2020-11-19 12:28:55'),
 ('O1', 1, '2020-11-11 15:04:12', 4, '2020-11-11 08:04:12', '2020-11-11 08:04:12');
 
 -- --------------------------------------------------------
@@ -332,13 +354,6 @@ ALTER TABLE `bills`
   ADD KEY `orderID` (`orderID`);
 
 --
--- Indexes for table `cartitems`
---
-ALTER TABLE `cartitems`
-  ADD KEY `orderID` (`orderID`),
-  ADD KEY `menuID` (`menuID`);
-
---
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
@@ -369,6 +384,14 @@ ALTER TABLE `mejas`
 --
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`menuId`);
+
+--
+-- Indexes for table `menu_order`
+--
+ALTER TABLE `menu_order`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `order_orderID` (`order_orderID`),
+  ADD KEY `menu_menuID` (`menu_menuId`);
 
 --
 -- Indexes for table `migrations`
@@ -429,6 +452,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `menu_order`
+--
+ALTER TABLE `menu_order`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -451,17 +480,17 @@ ALTER TABLE `bills`
   ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cartitems`
---
-ALTER TABLE `cartitems`
-  ADD CONSTRAINT `cartitem_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cartitem_ibfk_2` FOREIGN KEY (`menuID`) REFERENCES `menus` (`menuId`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `employees`
 --
 ALTER TABLE `employees`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`employeeType`) REFERENCES `employeetypes` (`employeetype`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `menu_order`
+--
+ALTER TABLE `menu_order`
+  ADD CONSTRAINT `menu_order_ibfk_1` FOREIGN KEY (`order_orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `menu_order_ibfk_2` FOREIGN KEY (`menu_menuId`) REFERENCES `menus` (`menuId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders`

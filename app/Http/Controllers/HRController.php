@@ -34,7 +34,7 @@ class HRController extends Controller
         $svc = new EmployeeService();
         $employee = $svc->deleteData($id);
 
-        return redirect('/');
+        return redirect('/HR');
     }
 
 
@@ -52,7 +52,7 @@ class HRController extends Controller
         $svc = new EmployeeService();
         $update = $svc->updateData($req, $id);
 
-        return redirect('/');
+        return redirect('/HR');
     }
 
     public function postEmployee(Request $req){
@@ -72,6 +72,8 @@ class HRController extends Controller
 
         $svc = new EmployeeService();
         $create = $svc->createNew($req);
+
+        return redirect('/HR');
 
 
     }
