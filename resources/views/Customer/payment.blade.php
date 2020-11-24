@@ -1,4 +1,4 @@
-@extends('footer')
+@extends('Customer.footer')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@
     <center>
         <div class="bg-dark bill">
             <p style="text-align: center;color: white;font-size: 30px;">Total Harga</p>
-            <p style="font-size: 70px;color: white;text-align: center;">Rp {{number_format($bills->amount, 0, ".", ".")}}</p>
+            <p style="font-size: 70px;color: white;text-align: center;">Rp {{number_format($order->amount, 0, ".", ".")}}</p>
             <div class="underline"></div>
         </div>
 
@@ -35,10 +35,10 @@
     @else
         <div style="margin: 75px 0 75px 0">
             <p style="font-size: 50px;color: rgb(0, 0, 0);text-align: center;">Cash</h2><br>
-            <p>Silahkan untuk melakukan pembayaran<br>ke kasir sejumlah Rp {{number_format($bills->amount, 0, ".", ".")}}</p>
+            <p>Silahkan untuk melakukan pembayaran<br>ke kasir sejumlah Rp {{number_format($order->amount, 0, ".", ".")}}</p>
         </div>
     @endif
-    <a href="/Bill/{{$mejas->tableId}}/{{$order}}/{{$bills->amount}}/cart" style="color: #C4C4C4;font-size: 30px">Batalkan</a>
+    <a href="/Bill/{{$order->orderID}}/{{$order->amount}}/cart" style="color: #C4C4C4;font-size: 30px">Batalkan</a>
     </center>
 </body>
 <script>

@@ -1,4 +1,4 @@
-
+@extends('footer')
 @extends('app')
 
 @section('content')
@@ -19,7 +19,7 @@
 
                     <tr>
                         <td>
-                            <a href="/Customer" type="button" class="btn btn-primary btn-lg btn-block">Customer</button>
+                            <a href="{{ url('/Customer/') }}" type="button" class="btn btn-primary btn-lg btn-block">Customer</button>
                         </td>
                     </tr>
                     <tr>

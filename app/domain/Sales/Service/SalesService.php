@@ -28,6 +28,10 @@ class SalesService{
         return $this->dao->findAllOrder();
     }
 
+    public function getOrderById($id){
+        return $this->dao->findOrderById($id);
+    }
+
     public function updateMenuOrderStatus($id){
         $menu = MenuOrder::find($id);
         $menu->stat = 2;
@@ -83,5 +87,11 @@ class SalesService{
 
         return $this->dao->saveOrder($order);
     }
+
+
+    public function createOrder($id){
+
+    }
+
 
 }

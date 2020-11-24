@@ -1,5 +1,5 @@
-@include('navigation')
-@extends('footer')
+@include('Customer.navigation')
+@extends('Customer.footer')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +14,10 @@
 
     <?php $counter = 1 ?>
     <center style="margin-top: 20px">
-      @if($name == 'Menu')
+      @if($query == 'Menu')
         Semua Menu
       @else
-        Menu {{ $name }}
+        Menu {{ $query }}
       @endif
     </center>
     @foreach($menus as $menu)
@@ -31,14 +31,14 @@
                 <h5 class="card-title">{{ $menu['title'] }}</h5>
             </div>
             <center style="margin: -30px 0px 0px 0px">Rp 5000</center>
-            <center><a href="/Cartitem/{{$mejas->tableId}}/{{$order}}/{{$menu['id']}}/{{ $menu['title'] }}">
-            <a href="/Cartitem/{{$mejas->tableId}}/{{$order}}/Menu/{{ $menu['id'] }}">
+            <center><a href="/Cartitem/{{$order->orderID}}/{{$menu['id']}}/{{ $menu['title'] }}">
+            <a href="/Cartitem/{{$order->orderID}}/Menu/{{ $menu['id'] }}">
                 <button type="button" class="btn btn-primary btn-sm" style="margin: 5px 0 15px 0">Masukkan ke keranjang</button></a></center>
         </div>
         @if($counter%4 == 0)
-        </div>
+            </div>
         @endif
-    <?php $counter++ ?>
+        <?php $counter++ ?>
     @endforeach
 
 

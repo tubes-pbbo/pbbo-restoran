@@ -1,5 +1,5 @@
-@include('navigation')
-@extends('footer')
+@include('Customer.navigation')
+@extends('Customer.footer')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +18,7 @@
 </style>
 
 <body>
-    @if(count($menus->menuorder) == 0)
+    @if(count($order->menuorder) == 0)
     <center>
         <h1 style="height: 70%">Tidak Ada Pesanan</h1>
     </center>
@@ -36,9 +36,9 @@
             </thead>
             <tbody>
                 <?php $total = 0 ?>
-                @foreach($menus->menuorder as $menu)
+                @foreach($order->menuorder as $menu)
                 <tr>
-                    <td><a href="/Cart/{{$mejas->tableId}}/{{$order}}/{{$query}}/{{$menu->ID}}">Delete</a></td>
+                    <td><a href="/Cart/{{$order->orderID}}/{{$query}}/{{$menu->ID}}">Delete</a></td>
                     <th scope="row">{{$menu->menu->name}}</th>
                     <td>Rp {{number_format($menu->menu->price, 0, ".", ".")}}</td>
                     <td>
@@ -47,7 +47,7 @@
                                 {{$menu->qty}}
                             </button>
                             <div class="dropdown-menu">
-                                @for($i = 0;$i < 20;$i++) <a class="dropdown-item" href="/Cart/{{$mejas->tableId}}/{{$order}}/{{$query}}/{{$menu->ID}}/{{$i}}">{{$i}}</a>
+                                @for($i = 0;$i < 20;$i++) <a class="dropdown-item" href="/Cart/{{$order->orderID}}/{{$query}}/{{$menu->ID}}/{{$i}}">{{$i}}</a>
                                     @endfor
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="/Bill/{{$mejas->tableId}}/{{$order}}/{{$total}}/cart"><button type="button" class="btn btn-primary">Save changes</button></a>
+                    <a href="/Bill/{{$order->orderID}}/{{$total}}/cart"><button type="button" class="btn btn-primary">Save changes</button></a>
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="/Bill/{{$mejas->tableId}}/{{$order}}/cart/{{$total}}"><button type="button" class="btn btn-primary">Save changes</button></a>
+                    <a href="/Bill/{{$order->orderID}}/cart/{{$total}}"><button type="button" class="btn btn-primary">Save changes</button></a>
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ use App\Domain\Sales\Entity\Menuorder;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\domain\Sales\Service\SalesService;
+use Illuminate\Support\Facades\Auth;
 
 class CashierController extends Controller{
 
@@ -71,6 +72,35 @@ class CashierController extends Controller{
         $temp = $svc->updateMenuCashierStatus($cashierId, $paymentId);
 
         return redirect()->route('cashierTable',[$tableId]);
+    }
+
+    public function history(){
+        $svc = new SalesService();
+        $orders = $svc->getOrder();
+
+        return view('Cashier/history',[
+            'orders' => $orders,
+        ]);
+    }
+
+    public function orderDetail($id){
+        $svc = new SalesService();
+        $order = $svc->getOrderById($id);
+
+        return view('Cashier/orderDetail',[
+            'order' => $order,
+        ]);
+    }
+
+    public function logout(){
+        Auth::logout();
+
+        return redirect('Cashier');
+    }
+
+    public function notCashier(){
+
+        return view('Cashier/not_cashier');
     }
 
 
