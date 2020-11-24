@@ -5,6 +5,7 @@ namespace App\domain\Sales\service;
 use App\domain\Sales\dao\SalesDao;
 use App\Domain\Sales\Entity\Menu;
 use App\Domain\Sales\Entity\MenuOrder;
+use App\Domain\Sales\Entity\Order;
 use App\Domain\Sales\Entity\Payment;
 use App\Domain\Sales\Entity\Table;
 
@@ -89,9 +90,38 @@ class SalesService{
     }
 
 
-    public function createOrder($id){
-
+    public function saveTableCust($meja){
+        $table = $this->dao->findTableById($meja);
+        $table->statusMeja = 1;
+        return $this->dao->saveTable($table);
     }
 
+    public function saveOrderCust($meja){
+        $mytime = \Carbon\Carbon::now();
+        $order = $mytime->format('dmYHis');
+
+        $create = new Order();
+        $create->orderID = $order;
+        $create->tableID = $meja;
+        $create->orderDate = $mytime;
+        $create->stat = 0;
+
+        $this->dao->saveOrder($create);
+
+        return $order;
+    }
+
+    public function updateQty($id, $qty){
+        $update = $this->dao->findMenuOrderById($id);
+        $update->qty = $qty;
+
+        return $this->dao->saveMenuOrder($update);
+    }
+
+    public function deleteQty($id){
+        $update = $this->dao->findMenuById($id);
+        return $this->dao->deleteMenuOrder($update);
+
+    }
 
 }

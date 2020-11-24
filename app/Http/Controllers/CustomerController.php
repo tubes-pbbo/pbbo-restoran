@@ -29,20 +29,8 @@ class CustomerController extends Controller
     public function createOrder($meja)
     {
         $svc = new SalesService();
-        $tables = $svc->createOrder($meja);
-
-        $mytime = \Carbon\Carbon::now();
-        $order = $mytime->format('dmYHis');
-        $table = Table::find($meja);
-        $table->statusMeja = 1;
-        $table->save();
-
-        $create = new Order;
-        $create->orderID = $order;
-        $create->tableID = $meja;
-        $create->orderDate = $mytime;
-        $create->stat = 0;
-        $create->save();
+        $table = $svc->saveTableCust($meja);
+        $order = $svc->saveOrderCust($meja);
 
         return redirect("Home/$order");
     }
@@ -70,9 +58,9 @@ class CustomerController extends Controller
     public function menu($order, $id)
     {
         if($id=="Menu"){
-        $url = 'https://api.spoonacular.com/recipes/complexSearch?offset=8&number=16&apiKey='.$this->api;
+            $url = 'https://api.spoonacular.com/recipes/complexSearch?offset=8&number=16&apiKey='.$this->api;
         }else{
-        $url = "https://api.spoonacular.com/recipes/complexSearch?query=".rawurlencode($id)."&number=16&apiKey=".$this->api;
+            $url = "https://api.spoonacular.com/recipes/complexSearch?query=".rawurlencode($id)."&number=16&apiKey=".$this->api;
         }
         $json = file_get_contents($url);
         $array = json_decode($json, true);
@@ -120,7 +108,8 @@ class CustomerController extends Controller
 
     public function cartItem($order, $back)
     {
-        $orders = Order::find($order);
+        $svc = new SalesService();
+        $orders = $svc->getOrderById($order);
         if($back == 'home'){
             $urlback = "/Home/$order";
         }else if($back == 'bill'){
@@ -140,16 +129,16 @@ class CustomerController extends Controller
         if($qty == 0){
             return redirect("/Cart/$order/$back/$id");
         }else{
-            $update = MenuOrder::find($id);
-            $update->qty = $qty;
-            $update->save();
+            $svc = new SalesService();
+            $update = $svc->updateQty($id, $qty);
             return redirect("/Cart/$order/$back");
         }
     }
 
     public function deleteQuantity($order, $back, $id)
     {
-        $update = MenuOrder::find($id);
+        $svc = new SalesService();
+        $update = $svc->deleteQty($id);
         $update->delete();
         return redirect("/Cart/$order/$back");
     }

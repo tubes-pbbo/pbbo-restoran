@@ -103,7 +103,6 @@ class CashierController extends Controller{
         return view('Cashier/not_cashier');
     }
 
-
 }
 
 ?>

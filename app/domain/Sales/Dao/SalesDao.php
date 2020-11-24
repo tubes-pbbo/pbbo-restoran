@@ -62,6 +62,17 @@ class SalesDao
         return $order->save();
     }
 
+    public function saveMenuOrder(MenuOrder $menuorder){
+        return $menuorder->save();
+    }
+
+    public function findMenuOrderById($id){
+        return MenuOrder::find($id);
+    }
+
+    public function deleteMenuOrder(MenuOrder $menuorder){
+        return $menuorder->delete();
+    }
 
 
 }
