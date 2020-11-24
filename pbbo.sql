@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2020 at 09:50 AM
+-- Generation Time: Nov 24, 2020 at 04:51 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -21,28 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `pbbo`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bills`
---
-
-CREATE TABLE `bills` (
-  `billID` varchar(20) NOT NULL,
-  `orderID` varchar(20) DEFAULT NULL,
-  `amount` int(20) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `bills`
---
-
-INSERT INTO `bills` (`billID`, `orderID`, `amount`, `created_at`, `updated_at`) VALUES
-('119112020192853', '19112020192853', 1829850, '2020-11-19 14:17:16', '2020-11-20 05:01:11'),
-('B1', 'O1', 50000, '2020-11-11 08:05:38', '2020-11-11 08:05:38');
 
 -- --------------------------------------------------------
 
@@ -65,7 +43,7 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`employeeID`, `name`, `birthdate`, `employeeType`, `created_at`, `updated_at`, `password`) VALUES
-('C0', 'Ferani', '2000-08-07', 3, '2020-11-20 05:46:10', '2020-11-20 05:46:10', '$2y$10$s1i5/PFmd7b08jiS6SsfO.DONGqhAffshPUyKUlNFgPOdMiof4Yme'),
+('C0', 'Ferani', '2020-11-18', 3, '2020-11-23 04:55:28', '2020-11-23 04:55:28', '$2y$10$8EQroP/7ZbSJfaaoQpRh6.QX3kiw.KuyKrQwFXz1uSK7baXC/cEMG'),
 ('C1', 'Anwar', '2020-11-06', 1, '2020-11-11 08:01:32', '2020-11-11 08:01:32', NULL),
 ('K1', 'Agus', '2020-11-01', 3, '2020-11-11 08:01:32', '2020-11-11 08:01:32', NULL),
 ('W1', 'Bina', '2020-11-08', 2, '2020-11-11 08:02:28', '2020-11-11 08:02:28', NULL);
@@ -117,6 +95,7 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `mejas` (
   `tableId` int(11) NOT NULL,
   `tableName` varchar(10) DEFAULT NULL,
+  `statusMeja` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -125,9 +104,11 @@ CREATE TABLE `mejas` (
 -- Dumping data for table `mejas`
 --
 
-INSERT INTO `mejas` (`tableId`, `tableName`, `created_at`, `updated_at`) VALUES
-(1, 'A1', '2020-11-11 07:59:27', '2020-11-11 07:59:27'),
-(2, 'A2', '2020-11-11 07:59:27', '2020-11-11 07:59:27');
+INSERT INTO `mejas` (`tableId`, `tableName`, `statusMeja`, `created_at`, `updated_at`) VALUES
+(1, 'A1', 1, '2020-11-11 07:59:27', '2020-11-11 07:59:27'),
+(2, 'A2', 1, '2020-11-11 07:59:27', '2020-11-24 03:30:02'),
+(3, 'A3', 0, NULL, NULL),
+(4, 'A4', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -193,6 +174,7 @@ CREATE TABLE `menu_order` (
   `menu_menuId` varchar(20) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
   `note` varchar(225) DEFAULT NULL,
+  `stat` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -201,9 +183,20 @@ CREATE TABLE `menu_order` (
 -- Dumping data for table `menu_order`
 --
 
-INSERT INTO `menu_order` (`ID`, `order_orderID`, `menu_menuId`, `qty`, `note`, `created_at`, `updated_at`) VALUES
-(17, '19112020192853', '716408', 1, NULL, '2020-11-20 04:42:56', '2020-11-20 04:42:56'),
-(18, '19112020192853', '756814', 13, NULL, '2020-11-20 04:43:27', '2020-11-20 04:43:47');
+INSERT INTO `menu_order` (`ID`, `order_orderID`, `menu_menuId`, `qty`, `note`, `stat`, `created_at`, `updated_at`) VALUES
+(1, '19112020192853', '715415', 8, NULL, 3, '2020-11-19 06:11:41', '2020-11-24 03:30:04'),
+(2, '19112020192853', '766453', 15, NULL, 3, '2020-11-19 06:11:45', '2020-11-24 03:30:06'),
+(3, '19112020192853', '794349', 8, NULL, 3, '2020-11-19 21:04:31', '2020-11-24 03:30:08'),
+(4, '19112020192853', '715446', 8, NULL, 3, '2020-11-19 21:04:34', '2020-11-24 03:30:10'),
+(5, '19112020192853', '640941', 1, NULL, 3, '2020-11-19 21:42:16', '2020-11-24 03:30:12'),
+(6, '19112020192853', '795751', 10, NULL, 3, '2020-11-19 21:42:45', '2020-11-24 03:30:14'),
+(7, '19112020192853', '715594', 1, NULL, 3, '2020-11-22 22:58:24', '2020-11-24 03:30:16'),
+(8, '19112020192853', '716426', 1, NULL, 3, '2020-11-22 22:58:49', '2020-11-24 03:30:18'),
+(9, 'O2', '715497', 1, NULL, NULL, NULL, NULL),
+(10, 'O2', '716268', 3, NULL, NULL, NULL, NULL),
+(11, 'O2', '547775', 4, NULL, NULL, NULL, NULL),
+(12, 'O1', '715769', 1, NULL, NULL, NULL, NULL),
+(14, '119112020192853', '715415', 1, NULL, NULL, '2020-11-24 00:00:38', '2020-11-24 00:00:38');
 
 -- --------------------------------------------------------
 
@@ -236,7 +229,8 @@ CREATE TABLE `orders` (
   `orderID` varchar(20) NOT NULL,
   `tableID` int(11) DEFAULT NULL,
   `orderDate` datetime NOT NULL,
-  `stat` int(11) DEFAULT NULL,
+  `stat` int(11) NOT NULL,
+  `amount` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -245,9 +239,12 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`orderID`, `tableID`, `orderDate`, `stat`, `created_at`, `updated_at`) VALUES
-('19112020192853', 1, '2020-11-19 19:28:55', 1, '2020-11-19 12:28:55', '2020-11-19 12:28:55'),
-('O1', 1, '2020-11-11 15:04:12', 4, '2020-11-11 08:04:12', '2020-11-11 08:04:12');
+INSERT INTO `orders` (`orderID`, `tableID`, `orderDate`, `stat`, `amount`, `created_at`, `updated_at`) VALUES
+('119112020192853', 1, '2020-11-24 06:57:10', 1, 50600, '2020-11-23 23:57:10', '2020-11-24 00:01:07'),
+('19112020192853', 1, '2020-11-19 19:28:55', 1, 1721500, '2020-11-19 12:28:55', '2020-11-24 03:31:17'),
+('24112020154908', 1, '2020-11-24 15:49:08', 1, NULL, '2020-11-24 08:49:08', '2020-11-24 08:49:08'),
+('O1', 1, '2020-11-11 15:04:12', 1, NULL, '2020-11-11 08:04:12', '2020-11-11 08:04:12'),
+('O2', 2, '2020-11-16 00:00:00', 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -291,8 +288,9 @@ INSERT INTO `paymentmethods` (`paymentType`, `paymentName`, `created_at`, `updat
 CREATE TABLE `payments` (
   `paymentID` varchar(20) NOT NULL,
   `paymenttype` int(11) DEFAULT NULL,
-  `billID` varchar(20) DEFAULT NULL,
+  `orderID` varchar(20) DEFAULT NULL,
   `kasir` varchar(20) DEFAULT NULL,
+  `statusPayment` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -301,8 +299,11 @@ CREATE TABLE `payments` (
 -- Dumping data for table `payments`
 --
 
-INSERT INTO `payments` (`paymentID`, `paymenttype`, `billID`, `kasir`, `created_at`, `updated_at`) VALUES
-('P1', 1, 'B1', 'K1', '2020-11-11 08:06:12', '2020-11-11 08:06:12');
+INSERT INTO `payments` (`paymentID`, `paymenttype`, `orderID`, `kasir`, `statusPayment`, `created_at`, `updated_at`) VALUES
+('1', 1, 'O1', NULL, 1, NULL, NULL),
+('1119112020192853', 1, '119112020192853', NULL, 1, '2020-11-24 00:01:14', '2020-11-24 01:03:39'),
+('119112020192853', 1, '19112020192853', 'C0', 1, '2020-11-22 23:02:15', '2020-11-24 02:42:41'),
+('asd', 1, 'O2', NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -320,10 +321,9 @@ CREATE TABLE `statuspemesanans` (
 --
 
 INSERT INTO `statuspemesanans` (`statusId`, `statusName`) VALUES
-(1, 'Order Dibuat'),
-(2, 'Payment berhasil'),
-(3, 'Makanan Dimasak'),
-(4, 'Makanan Diantar');
+(1, 'Sedang dimasak'),
+(2, 'Sudah dimasak'),
+(3, 'Selesai');
 
 -- --------------------------------------------------------
 
@@ -345,13 +345,6 @@ CREATE TABLE `users` (
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `bills`
---
-ALTER TABLE `bills`
-  ADD PRIMARY KEY (`billID`),
-  ADD KEY `orderID` (`orderID`);
 
 --
 -- Indexes for table `employees`
@@ -391,7 +384,8 @@ ALTER TABLE `menus`
 ALTER TABLE `menu_order`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `order_orderID` (`order_orderID`),
-  ADD KEY `menu_menuID` (`menu_menuId`);
+  ADD KEY `menu_menuId` (`menu_menuId`),
+  ADD KEY `stat` (`stat`);
 
 --
 -- Indexes for table `migrations`
@@ -404,8 +398,7 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`orderID`),
-  ADD KEY `tableID` (`tableID`),
-  ADD KEY `orders_ibfk_2` (`stat`);
+  ADD KEY `tableID` (`tableID`);
 
 --
 -- Indexes for table `password_resets`
@@ -425,8 +418,8 @@ ALTER TABLE `paymentmethods`
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`paymentID`),
   ADD KEY `paymenttype` (`paymenttype`),
-  ADD KEY `billID` (`billID`),
-  ADD KEY `kasir` (`kasir`);
+  ADD KEY `kasir` (`kasir`),
+  ADD KEY `orderID` (`orderID`) USING BTREE;
 
 --
 -- Indexes for table `statuspemesanans`
@@ -455,7 +448,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `menu_order`
 --
 ALTER TABLE `menu_order`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -474,12 +467,6 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `bills`
---
-ALTER TABLE `bills`
-  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `employees`
 --
 ALTER TABLE `employees`
@@ -489,23 +476,23 @@ ALTER TABLE `employees`
 -- Constraints for table `menu_order`
 --
 ALTER TABLE `menu_order`
-  ADD CONSTRAINT `menu_order_ibfk_1` FOREIGN KEY (`order_orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `menu_order_ibfk_2` FOREIGN KEY (`menu_menuId`) REFERENCES `menus` (`menuId`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `menu_order_ibfk_1` FOREIGN KEY (`order_orderID`) REFERENCES `orders` (`orderID`),
+  ADD CONSTRAINT `menu_order_ibfk_2` FOREIGN KEY (`menu_menuId`) REFERENCES `menus` (`menuId`),
+  ADD CONSTRAINT `menu_order_ibfk_3` FOREIGN KEY (`stat`) REFERENCES `statuspemesanans` (`statusId`);
 
 --
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`tableID`) REFERENCES `mejas` (`tableId`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`stat`) REFERENCES `statuspemesanans` (`statusId`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`tableID`) REFERENCES `mejas` (`tableId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `payments`
 --
 ALTER TABLE `payments`
   ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`paymenttype`) REFERENCES `paymentmethods` (`paymentType`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `payment_ibfk_2` FOREIGN KEY (`billID`) REFERENCES `bills` (`billID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `payment_ibfk_3` FOREIGN KEY (`kasir`) REFERENCES `employees` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `payment_ibfk_3` FOREIGN KEY (`kasir`) REFERENCES `employees` (`employeeID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `payment_ibfk_4` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
