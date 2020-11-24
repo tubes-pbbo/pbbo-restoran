@@ -35,7 +35,7 @@
                                         {{$item->qty}}
                                     </td>
                                     <td>
-                                        {{$item->status->statusName}}
+                                        {{$item->statusPemesanan->statusName}}
                                     </td>
                                 </tr>
                             @endforeach

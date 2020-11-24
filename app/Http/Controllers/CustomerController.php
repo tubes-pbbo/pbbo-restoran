@@ -13,7 +13,7 @@ use App\domain\Sales\Service\SalesService;
 
 class CustomerController extends Controller
 {
-    public $api = '143fe0842cf749eb9f1e564ac07fe9ab';
+    public $api = 'e5f12dc920b24dfd9f3dee909c56ece0';
 
     public function cust()
     {
@@ -41,7 +41,7 @@ class CustomerController extends Controller
         $create->orderID = $order;
         $create->tableID = $meja;
         $create->orderDate = $mytime;
-        $create->stat = 1;
+        $create->stat = 0;
         $create->save();
 
         return redirect("Home/$order");
@@ -188,6 +188,7 @@ class CustomerController extends Controller
             $payments->paymenttype = $method;
             $payments->save();
         }
+        $payments = Payment::find($noPayment);
         if($payments->statusPayment == 0){
             return view('Customer.payment', [
                 'order' => $orders,
