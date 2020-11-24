@@ -139,7 +139,6 @@ class CustomerController extends Controller
     {
         $svc = new SalesService();
         $update = $svc->deleteQty($id);
-        $update->delete();
         return redirect("/Cart/$order/$back");
     }
 
