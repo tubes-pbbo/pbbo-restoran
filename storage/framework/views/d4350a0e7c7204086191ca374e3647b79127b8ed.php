@@ -1,0 +1,1 @@
+Haii<?php /**PATH C:\Users\frans\PBBO\resources\views/welcome.blade.php ENDPATH**/ ?>
