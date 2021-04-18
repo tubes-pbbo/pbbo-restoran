@@ -14,8 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'cashier',
     ],
 
     /*
@@ -35,10 +34,17 @@ return [
     |
     */
 
+
+
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'cashier' => [
+            'driver' => 'session',
+            'provider' => 'cashiers',
         ],
 
         'api' => [
@@ -46,6 +52,7 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
     ],
 
     /*
@@ -71,10 +78,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'cashiers' => [
+            'driver' => 'eloquent',
+            'model' => App\Domain\HR\Entity\Employee::class,
+        ],
     ],
 
     /*

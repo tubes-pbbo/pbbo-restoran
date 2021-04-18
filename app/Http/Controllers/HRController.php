@@ -34,7 +34,7 @@ class HRController extends Controller
         $svc = new EmployeeService();
         $employee = $svc->deleteData($id);
 
-        return redirect('/');
+        return redirect('/HR');
     }
 
 
@@ -52,7 +52,7 @@ class HRController extends Controller
         $svc = new EmployeeService();
         $update = $svc->updateData($req, $id);
 
-        return redirect('/');
+        return redirect('/HR');
     }
 
     public function postEmployee(Request $req){
@@ -61,10 +61,10 @@ class HRController extends Controller
             'name'=> 'required|max:255',
             'birthdate' => 'required|max:10',
             'employeetype' => 'required|max:1',
-            
+
         ]);
 
-        if ($validator->fails() || $req->employeetype == 3 && $req->password="" ){
+        if ($validator->fails() || $req->employeetype == 3 && $req->password=="" ){
             return redirect('/createEmployee/create')
             ->withInput()
             ->withErrors($validator);
@@ -72,6 +72,8 @@ class HRController extends Controller
 
         $svc = new EmployeeService();
         $create = $svc->createNew($req);
+
+        return redirect('/HR');
 
 
     }

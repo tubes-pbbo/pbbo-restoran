@@ -13,6 +13,7 @@ namespace App\domain\HR\dao;
 use App\domain\HR\entity\Employee;
 use App\domain\HR\entity\EmployeeType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Author : Fransiskus
@@ -40,8 +41,8 @@ class EmployeeDao
         $data->birthdate=$req->birthdate;
         $data->employeeType=$req->employeetype;
 
-        if($data->password){
-            $data->password=password_hash($req->password, PASSWORD_DEFAULT);
+        if($req->password){
+            $data->password=bcrypt($req->password);
         }
         $data->save();
     }
@@ -50,19 +51,23 @@ class EmployeeDao
         $data = Employee::findOrFail($id);
         $data->name=$req->name;
         $data->employeetype=$req->employeetype;
-        $data->password=$req->password;
+        $data->password=bcrypt($req->password);
         $data->save();
     }
 
     public function delete($id){
         $data = Employee::findOrFail($id);
         $data->delete();
-        
+
     }
 
     public function findEmployeeType(){
         return EmployeeType::all();
-        
+
+    }
+
+    public function login(Request $req){
+        return Auth::attempt(['employeeID' =>  $req->id ,'password' => $req->password, 'employeeType' => 3]);
     }
 
 }
